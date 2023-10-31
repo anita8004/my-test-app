@@ -19,11 +19,8 @@ const logout = () => {
 }
 
 const tokenLogout = () => {
-  fetch(`https://oauth2.googleapis.com/revoke?token=${userStore.token}`, {
-    method: 'POST',
-    headers: {
-      'Content-type':'application/x-www-form-urlencoded'
-    }
+  window.google.accounts.id.revoke(userStore.email, (done) => {
+    console.log('consent revoked successful', done.successful)
   })
 }
 </script>
