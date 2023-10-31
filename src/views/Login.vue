@@ -46,6 +46,12 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
   router.replace({ name: 'Home' })
 }
 
+const FBLogin = () => {
+  window.FB.login(function(response) {
+    console.log(response)
+  })
+}
+
 </script>
 
 <template>
@@ -59,6 +65,7 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
     <br><br>
     <p>取得token來獲取登入資訊</p>
     <van-button @click="login">googleTokenLogin</van-button>
+    <van-button @click="FBLogin">FB Login</van-button>
   </div>
 </div>
 </template>

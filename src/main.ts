@@ -5,6 +5,7 @@ import App from './App.vue'
 import useVant from '@/plugins/vant'
 import router from '@/router'
 import GAuth2 from '@/plugins/gapi'
+import { initFacebookSdk } from '@/plugins/fbapi'
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -15,4 +16,5 @@ const google_client_id = '952327172004-nlgseih6hkf8sm96ju4njh2j22ibuj5f.apps.goo
 app.use(GAuth2, {
   clientId: google_client_id
 })
+initFacebookSdk()
 app.mount('#app')
