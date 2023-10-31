@@ -9,9 +9,22 @@ const userStore = useUserStore()
 const isLogin = computed(() => userStore.token || userStore.credential)
 
 const logout = () => {
-  googleLogout()
+  if (userStore.credential) {
+    googleLogout()
+  } else {
+    tokenLogout()
+  }
   userStore.clearUserInfo()
   router.replace({ name: 'Login' })
+}
+
+const tokenLogout = () => {
+  fetch(`https://oauth2.googleapis.com/revoke?token=${userStore.token}`, {
+    method: 'POST',
+    headers: {
+      'Content-type':'application/x-www-form-urlencoded'
+    }
+  })
 }
 </script>
 
@@ -36,4 +49,3 @@ const logout = () => {
   align-items: center;
 }
 </style>
-@/plugins/gapi

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { googleTokenLogin, googleAuthCodeLogin, decodeCredential, googleSdkLoaded } from '@/plugins/gapi'
+import { googleTokenLogin, decodeCredential } from '@/plugins/gapi'
 import type { CallbackTypes } from '@/plugins/gapi'
 import { useUserStore } from '@/stores/user'
 import router from '@/router'
@@ -33,24 +33,6 @@ const login = () => {
   })
 }
 
-// const login2 = () => {
-//   googleAuthCodeLogin().then((response) => {
-//     console.log("Handle the response", response)
-//   })
-// }
-
-// const login3 = () => {
-//   googleSdkLoaded((google) => {
-//     google.accounts.oauth2.initCodeClient({
-//       client_id: '952327172004-nlgseih6hkf8sm96ju4njh2j22ibuj5f.apps.googleusercontent.com',
-//       scope: 'email profile openid',
-//       callback: (response) => {
-//         console.log("Handle the response", response)
-//       }
-//     }).requestCode()
-//   })
-// }
-
 const callback: CallbackTypes.CredentialCallback = (response) => {
   console.log('CredentialCallback: ', response)
   const responsePayload: any = decodeCredential(response.credential)
@@ -64,34 +46,19 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
   router.replace({ name: 'Home' })
 }
 
-// const callback2: CallbackTypes.TokenResponseCallback = (response) => {
-//   console.log('TokenResponseCallback: ', response)
-// }
-
 </script>
 
 <template>
 <div class="page-login">
   <header>
     <h1>Login</h1>
-    <!-- <p>IsInit: {{ Vue3GoogleOauth.isInit }}</p>
-    <p>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</p> -->
   </header>
   <div class="login-list">
     <p>google建議的登入方式</p>
     <GoogleLogin :callback="callback" />
     <br><br>
-    <!-- <p>TokenResponseCallback</p>
-    <GoogleLogin :callback="callback2">
-      <button>Login with Google (TokenResponseCallback)</button>
-    </GoogleLogin>
-    <br><br> -->
     <p>取得token來獲取登入資訊</p>
     <van-button @click="login">googleTokenLogin</van-button>
-    <!-- <p>googleAuthCodeLogin</p>
-    <van-button @click="login2">googleAuthCodeLogin</van-button> -->
-    <!-- <p>googleSdkLoaded</p>
-    <van-button @click="login3">googleSdkLoaded</van-button> -->
   </div>
 </div>
 </template>
