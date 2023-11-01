@@ -3,7 +3,6 @@ import { googleTokenLogin, decodeCredential } from "@/plugins/gapi";
 import type { CallbackTypes } from "@/plugins/gapi";
 import { useUserStore } from "@/stores/user";
 import router from "@/router";
-import FBLoginButton from "@/plugins/fbapi/FBLoginButton.vue";
 
 const userStore = useUserStore();
 
@@ -21,6 +20,7 @@ const login = () => {
       .then((res) => res.json())
       .then((result) => {
         console.log("result: ", result);
+        userStore.login_type = 'google'
         userStore.name = result.name;
         userStore.email = result.email;
         userStore.email_verified = result.email_verified;
@@ -38,6 +38,7 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
   console.log("CredentialCallback: ", response);
   const responsePayload: any = decodeCredential(response.credential);
   console.log("responsePayload: ", responsePayload);
+  userStore.login_type = 'google'
   userStore.credential = response.credential;
   userStore.name = responsePayload.name;
   userStore.email = responsePayload.email;
@@ -48,9 +49,7 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
 };
 
 const FBLogin = () => {
-  window.FB.login(function (response) {
-    console.log(response);
-  });
+  userStore.loginWithFB()
 };
 </script>
 
@@ -60,15 +59,59 @@ const FBLogin = () => {
       <h1>Login</h1>
     </header>
     <div class="login-list">
-      <p>google建議的登入方式</p>
-      <GoogleLogin :callback="callback" />
-      <br /><br />
-      <p>取得token來獲取登入資訊</p>
-      <van-button @click="login">googleTokenLogin</van-button>
-      <!-- <van-button @click="FBLogin">FB Login</van-button> -->
-      <FBLoginButton />
+      <p>
+        <GoogleLogin :callback="callback" />
+      </p>
+      <p>
+        <van-button class="btn btn-google" size="normal" block @click="login">
+          <template #icon>
+            <font-awesome-icon :icon="['fab', 'google']" />
+          </template>
+          Login with google
+        </van-button>
+      </p>
+      <p>
+        <van-button class="btn btn-facebook" size="normal" block @click="FBLogin">
+          <template #icon>
+            <font-awesome-icon :icon="['fab', 'facebook-f']" />
+          </template>
+          Login with facebook
+        </van-button>
+      </p>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+
+.login-list {
+  .btn {
+    width: 280px;
+    margin: 0 auto;
+  }
+}
+
+.btn {
+  border: 0;
+}
+
+.btn-facebook {
+  background: #3b5998;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+    opacity: 0.8;
+  }
+}
+
+.btn-google {
+  background: #DB4437;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+    opacity: 0.8;
+  }
+}
+</style>

@@ -7,6 +7,7 @@ const userStore = useUserStore()
 <h1>Home</h1>
 <div v-if="userStore.token || userStore.credential" class="user-info">
   <van-image
+    v-if="userStore.picture"
     class="user-image"
     :src="userStore.picture"
     width="5rem"
@@ -19,8 +20,8 @@ const userStore = useUserStore()
   <van-cell-group inset>
     <van-cell v-if="userStore.credential" title="Credential" :value="userStore.credential" />
     <van-cell v-if="userStore.token" title="Token" :value="userStore.token" />
-    <van-cell title="Name" :value="userStore.name" />
-    <van-cell title="Email" :value="userStore.email" />
+    <van-cell v-if="userStore.name" title="Name" :value="userStore.name" />
+    <van-cell v-if="userStore.email" title="Email" :value="userStore.email" />
     <van-cell v-if="userStore.exp" title="Exp" :value="userStore.exp" />
   </van-cell-group>
 </div>

@@ -9,10 +9,15 @@ const userStore = useUserStore()
 const isLogin = computed(() => userStore.token || userStore.credential)
 
 const logout = () => {
-  if (userStore.credential) {
-    googleLogout()
-  } else {
-    tokenLogout()
+  if (userStore.login_type === 'google') {
+    if (userStore.credential) {
+      googleLogout()
+    } else {
+      tokenLogout()
+    }
+  }
+  if (userStore.login_type === 'facebook') {
+    userStore.logoutWithFB()
   }
   userStore.clearUserInfo()
   router.replace({ name: 'Login' })
@@ -28,9 +33,7 @@ const tokenLogout = () => {
 <template>
   <div>
     <p class="router-nav">
-      <router-link v-if="isLogin" to="/">Home</router-link>
-      <router-link v-if="!isLogin" to="/login">Login</router-link>
-      <van-button v-else type="default" size="small" plain hairline @click="logout">Logout</van-button>
+      <van-button v-if="isLogin" type="default" size="small" plain hairline @click="logout">Logout</van-button>
     </p>
     <van-config-provider theme="dark">
       <router-view></router-view>

@@ -21,7 +21,7 @@ export function initFacebookSdk() {
     window.fbAsyncInit = function () {
       const FB = window.FB;
       FB.init({
-        appId: facebookAppId,
+        appId: '189264130891850',
         cookie: true,
         xfbml: true,
         version: "v18.0",

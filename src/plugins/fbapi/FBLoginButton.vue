@@ -25,11 +25,6 @@ const getMe = () => {
     console.log("me: ", response);
     userStore.name = response.name;
     userStore.email = response.email;
-    document.getElementById("profile").innerHTML =
-      "Good to see you, " +
-      response.name +
-      ". i see your email address is " +
-      response.email;
   });
 };
 
@@ -37,6 +32,7 @@ const FBLogin = () => {
   FB.login(function (response) {
     console.log("login: ", response);
     if (response.authResponse) {
+      userStore.login_type = 'facebook'
       console.log("Welcome!  Fetching your information.... ");
       getMe();
     }
@@ -44,7 +40,7 @@ const FBLogin = () => {
 };
 
 onMounted(() => {
-  initLoadFB();
+  // initLoadFB();
   window.fbAsyncInit = function () {
     const FB = window.FB;
     FB.init({
