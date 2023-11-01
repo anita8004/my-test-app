@@ -2,7 +2,7 @@
   "name": "my-test-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "npx vite --host --port 8080",
     "build": "vue-tsc && vite build",
@@ -27,6 +27,7 @@
     "typescript": "^5.0.2",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
+    "vite-plugin-babel-macros": "^1.0.6",
     "vue-tsc": "^1.8.5"
   }
 }
