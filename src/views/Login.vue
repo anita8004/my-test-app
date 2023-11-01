@@ -20,7 +20,7 @@ const login = () => {
       .then((res) => res.json())
       .then((result) => {
         console.log("result: ", result);
-        userStore.login_type = 'google'
+        userStore.login_type = "google";
         userStore.name = result.name;
         userStore.email = result.email;
         userStore.email_verified = result.email_verified;
@@ -38,7 +38,7 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
   console.log("CredentialCallback: ", response);
   const responsePayload: any = decodeCredential(response.credential);
   console.log("responsePayload: ", responsePayload);
-  userStore.login_type = 'google'
+  userStore.login_type = "google";
   userStore.credential = response.credential;
   userStore.name = responsePayload.name;
   userStore.email = responsePayload.email;
@@ -49,7 +49,7 @@ const callback: CallbackTypes.CredentialCallback = (response) => {
 };
 
 const FBLogin = () => {
-  userStore.loginWithFB()
+  userStore.loginWithFB();
 };
 </script>
 
@@ -64,17 +64,22 @@ const FBLogin = () => {
       </p>
       <p>
         <van-button class="btn btn-google" size="normal" block @click="login">
-          <template #icon>
+          <!-- <template #icon>
             <font-awesome-icon :icon="['fab', 'google']" />
-          </template>
+          </template> -->
           Login with google
         </van-button>
       </p>
       <p>
-        <van-button class="btn btn-facebook" size="normal" block @click="FBLogin">
-          <template #icon>
+        <van-button
+          class="btn btn-facebook"
+          size="normal"
+          block
+          @click="FBLogin"
+        >
+          <!-- <template #icon>
             <font-awesome-icon :icon="['fab', 'facebook-f']" />
-          </template>
+          </template> -->
           Login with facebook
         </van-button>
       </p>
@@ -83,7 +88,6 @@ const FBLogin = () => {
 </template>
 
 <style lang="scss" scoped>
-
 .login-list {
   .btn {
     width: 280px;
@@ -106,7 +110,7 @@ const FBLogin = () => {
 }
 
 .btn-google {
-  background: #DB4437;
+  background: #db4437;
   color: #fff;
 
   &:hover {

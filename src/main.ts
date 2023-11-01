@@ -5,15 +5,15 @@ import App from "./App.vue";
 import useVant from "@/plugins/vant";
 import router from "@/router";
 import GAuth2 from "@/plugins/gapi";
-import { initFacebookSdk } from '@/plugins/fbapi'
+import { initFacebookSdk } from "@/plugins/fbapi";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faGoogle, faFacebookF)
+// library.add(faGoogle, faFacebookF)
 
-initFacebookSdk().then(startApp)
+initFacebookSdk().then(startApp);
 
 function startApp() {
   const pinia = createPinia();
@@ -26,7 +26,6 @@ function startApp() {
   app.use(GAuth2, {
     clientId: google_client_id,
   });
-  app.component('font-awesome-icon', FontAwesomeIcon)
+  // app.component('font-awesome-icon', FontAwesomeIcon)
   app.mount("#app");
 }
-
