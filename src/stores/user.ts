@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import router from '@/router'
 
@@ -12,6 +12,7 @@ export const useUserStore = defineStore('user', () => {
   const picture = ref('')
   const exp = ref('')
 
+  const isLogin = computed(() => Boolean(token.value || credential.value))
 
   const clearUserInfo = () => {
     login_type.value = ''
@@ -55,6 +56,7 @@ export const useUserStore = defineStore('user', () => {
     name,
     picture,
     exp,
+    isLogin,
     clearUserInfo,
     loginWithFB,
     logoutWithFB

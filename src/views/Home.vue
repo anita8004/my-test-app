@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
+import router from '@/router'
 const userStore = useUserStore()
+
+if (!userStore.isLogin) {
+  router.replace({ name: 'Login' })
+}
 </script>
 
 <template>
 <h1>Home</h1>
-<div v-if="userStore.token || userStore.credential" class="user-info">
+<div v-if="userStore.isLogin" class="user-info">
   <van-image
     v-if="userStore.picture"
     class="user-image"
