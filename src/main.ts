@@ -9,11 +9,9 @@ import { initFacebookSdk } from '@/plugins/fbapi'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGoogle, faFacebook, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faGoogle)
-library.add(faFacebook)
-library.add(faFacebookF)
+library.add(faGoogle, faFacebookF)
 
 initFacebookSdk().then(startApp)
 
