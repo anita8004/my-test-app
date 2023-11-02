@@ -65,10 +65,7 @@ const FBLogin = () => {
       </p>
       <p>
         <van-button class="btn btn-google" size="normal" block @click="login">
-          <!-- <template #icon>
-            <font-awesome-icon :icon="['fab', 'google']" />
-          </template> -->
-          Login with google
+          Google Login
         </van-button>
       </p>
       <p>
@@ -78,10 +75,7 @@ const FBLogin = () => {
           block
           @click="FBLogin"
         >
-          <!-- <template #icon>
-            <font-awesome-icon :icon="['fab', 'facebook-f']" />
-          </template> -->
-          Login with facebook
+          Facebook Login
         </van-button>
       </p>
     </div>
