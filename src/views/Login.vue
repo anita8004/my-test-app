@@ -57,6 +57,7 @@ const FBLogin = () => {
   <div class="page-login">
     <header>
       <h1>Login</h1>
+      <p>請先閱讀README</p>
     </header>
     <div class="login-list">
       <p>

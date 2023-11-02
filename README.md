@@ -15,7 +15,12 @@ node 18.18.0
 ## document
 
 google第三方登入實作(https://hackmd.io/@anita-paradise/r1O0zyAfT)
+facebook第三方登入實作(https://hackmd.io/@anita-paradise/r1BFVAg7a)
 
 ## 在codeSandBox使用
-1. 可以將main.js中的google_client_id替換成自己的憑證
-2. 然後將codeSandBox右邊範例的網址添加到“已授權的 JavaScript 來源”及“已授權的重新導向 URI”
+！！因為codeSandBox的網址每次開啟不一定會一樣，如果網址變更會導致第三方登入功能沒有作用！！
+1. 可以將main.js中的google_client_id以及plugins/fbapi/index中的appId替換成自己的憑證
+2. 然後將codeSandBox右邊範例的網址添加到google和facebook的設定中
+
+google: “已授權的 JavaScript 來源”及“已授權的重新導向 URI”
+facebook: 應用程式設定>基本資料&使用案例>自訂>設定
